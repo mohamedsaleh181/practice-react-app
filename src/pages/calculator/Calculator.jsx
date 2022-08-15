@@ -30,6 +30,12 @@ function Calculator() {
 //   #############################################################################
   const operation = (e)=>{
     let op = e.target.innerText
+    if(currentOperand === '' && op === '=' && previousOperand && operator ){
+      setCurrtentOperand(previousOperand)  
+      setPreviousOperand('')
+      setOperator('')
+        return;
+    }
     if (
         (currentOperand === "" && op === "=") ||
         (op === "=" && previousOperand === "" && operator === "") ||
@@ -42,6 +48,7 @@ function Calculator() {
         setOperator(op)
         return
     }
+    
     if(op === '='){
         switch(operator){
             case '':
